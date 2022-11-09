@@ -17,8 +17,11 @@ import argparse
 import torch
 
 parser = argparse.ArgumentParser()
-parser.add_argument("--xfile", type=str, default="mnist2500_X.txt", help="file name of feature stored")
-parser.add_argument("--yfile", type=str, default="mnist2500_labels.txt", help="file name of label stored")
+# parser.add_argument("--xfile", type=str, default="./features_81.607/visual_features.txt", help="file name of feature stored")
+parser.add_argument("--xfile", type=str, default="./features_81.607/audio_features.txt", help="file name of feature stored")
+parser.add_argument("--yfile", type=str, default="./features_81.607/labels.txt", help="file name of label stored")
+# parser.add_argument("--xfile", type=str, default="./features_84.289/ucf_features.txt", help="file name of feature stored")
+# parser.add_argument("--yfile", type=str, default="./features_84.289/ucf_labels.txt", help="file name of label stored")
 parser.add_argument("--cuda", type=int, default=1, help="if use cuda accelarate")
 
 opt = parser.parse_args()
@@ -234,6 +237,7 @@ if __name__ == "__main__":
     #     Y2.write(str(Y[i,1])+"\n")
 
     pyplot.scatter(Y[:, 0], Y[:, 1], 20, labels)
+    pyplot.tight_layout()
     pyplot.show()
 
     # X1 = torch.randn([10, 2048]).cuda()
