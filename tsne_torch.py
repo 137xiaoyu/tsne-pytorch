@@ -12,16 +12,29 @@
 #  Created by Xiao Li on 23-03-2020.
 #  Copyright (c) 2020. All rights reserved.
 import numpy as np
+import matplotlib
 import matplotlib.pyplot as pyplot
 import argparse
 import torch
+from matplotlib.font_manager import FontProperties
+
+
+matplotlib.rc("font", family='Times New Roman')  # 显示中文
+matplotlib.rcParams['font.size'] = 16.0
+# matplotlib.rcParams['font.size'] = 12.0
+chinese_font_properties = FontProperties(fname='C:/Windows/Fonts/simsun.ttc')
+torch.manual_seed(139)
+# torch.manual_seed(142)
+
 
 parser = argparse.ArgumentParser()
-# parser.add_argument("--xfile", type=str, default="./features_81.607/visual_features.txt", help="file name of feature stored")
-parser.add_argument("--xfile", type=str, default="./features_81.607/audio_features.txt", help="file name of feature stored")
-parser.add_argument("--yfile", type=str, default="./features_81.607/labels.txt", help="file name of label stored")
+# parser.add_argument("--xfile", type=str, default="./features_80.635/visual_features.txt", help="file name of feature stored")
+# parser.add_argument("--xfile", type=str, default="./features_80.635/audio_features.txt", help="file name of feature stored")
+# parser.add_argument("--yfile", type=str, default="./features_80.635/labels.txt", help="file name of label stored")
 # parser.add_argument("--xfile", type=str, default="./features_84.289/ucf_features.txt", help="file name of feature stored")
 # parser.add_argument("--yfile", type=str, default="./features_84.289/ucf_labels.txt", help="file name of label stored")
+parser.add_argument("--xfile", type=str, default="./features/my_sht_features.txt", help="file name of feature stored")
+parser.add_argument("--yfile", type=str, default="./features/my_sht_labels.txt", help="file name of label stored")
 parser.add_argument("--cuda", type=int, default=1, help="if use cuda accelarate")
 
 opt = parser.parse_args()
@@ -237,6 +250,8 @@ if __name__ == "__main__":
     #     Y2.write(str(Y[i,1])+"\n")
 
     pyplot.scatter(Y[:, 0], Y[:, 1], 20, labels)
+    pyplot.xlabel("特征第一维度", fontproperties=chinese_font_properties)
+    pyplot.ylabel("特征第二维度", fontproperties=chinese_font_properties)
     pyplot.tight_layout()
     pyplot.show()
 
